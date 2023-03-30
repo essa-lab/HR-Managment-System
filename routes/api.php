@@ -1,9 +1,13 @@
 <?php
 
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\API\RegisterController as RegisterController;
+use App\Http\Controllers\API\JobsController;
+use App\Http\Controllers\API\EmployeeController;
+use App\Http\Controllers\API\EmployeeStatusController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +24,11 @@ Route::controller(RegisterController::class)->group(function(){
     Route::post('register', 'register');
     Route::post('login', 'login');
 
+});
+Route::middleware('auth:sanctum')->group( function () {
+    Route::resource('jobs', JobsController::class);
+    Route::resource('emp', EmployeeController::class);
+    Route::resource('employee', EmployeeStatusController::class);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
