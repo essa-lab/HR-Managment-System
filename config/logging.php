@@ -1,8 +1,10 @@
 <?php
 
+use App\LogDB;
 use Monolog\Handler\NullHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Handler\SyslogUdpHandler;
+
 
 return [
 
@@ -48,6 +50,11 @@ return [
     */
 
     'channels' => [
+        'db' => [
+            'driver' => 'custom',
+
+            'via'  => LogDB::class,
+        ],
         'stack' => [
             'driver' => 'stack',
             'channels' => ['single'],
@@ -114,6 +121,11 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
+        'custom'=>[
+            'driver'=>'single',
+            'path'=> storage_path('logs/custom.log'),
+        ]
+
     ],
 
 ];
