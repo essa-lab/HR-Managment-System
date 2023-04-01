@@ -19,7 +19,7 @@ class EmployeeStatus extends JsonResource
             'salary'=> $this->salary,
             'emp_id'=>$this->emp_id,
             'manager_id'=>$this->manager_id,
-            'job_id'=>$this->job_id
+            'job_id'=>$this->job_id,
         ];
     }
 }

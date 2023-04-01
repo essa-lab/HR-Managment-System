@@ -18,7 +18,7 @@ return new class extends Migration
             $table->double('salary');
             $table->foreignId('emp_id')->constrained('employees');
             $table->foreignId('job_id')->constrained('jobs');
-            $table->foreignId('manager_id')->constrained('employees')->nullable();
+            $table->foreignId('manager_id')->nullable()->constrained('employees');
             $table->timestamps();
         });
     }

@@ -17,6 +17,7 @@ class employee extends JsonResource
         return [
             'id' => $this->id,
             'name'=> $this->name,
+            'age'=>$this->age,
             'email'=>$this->email,
             'gender'=>$this->gender,
             'hire_date'=>$this->hire_date

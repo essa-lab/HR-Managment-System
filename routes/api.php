@@ -29,6 +29,9 @@ Route::middleware('auth:sanctum')->group( function () {
     Route::resource('jobs', JobsController::class);
     Route::resource('emp', EmployeeController::class);
     Route::resource('employee', EmployeeStatusController::class);
+
+    Route::get('employee/{id}/managers',[EmployeeStatusController::class, 'getManagers']);
+    Route::get('employee/{id}/managers-salary',[EmployeeStatusController::class, 'getManagersSalary']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

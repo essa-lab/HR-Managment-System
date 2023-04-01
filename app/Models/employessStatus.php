@@ -18,6 +18,6 @@ class employessStatus extends Model
     }
 
     protected $fillable =['emp_id','job_id','manager_id','salary'];
-    protected $primaryKey = ['emp_id','job_id'];
-    public $incrementing = false;
+    // protected $primaryKey = ['emp_id','job_id'];
+
 }
