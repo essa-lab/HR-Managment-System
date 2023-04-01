@@ -90,4 +90,15 @@ class EmployeeStatusController extends BaseController{
         }
         return $this->sendResponse($empStat,'Employee Status Retrive Successfully.');
     }
+
+    public function searchQuery(Request $request){
+
+        $input = $request->query('q');
+        $empStat = $this->service->getEmployeesByQuery($input);
+
+        if(is_null($empStat)){
+            return $this->sendError('Employee Status Not Found!');
+        }
+        return $this->sendResponse($empStat,'Employee Status Retrive Successfully.');
+    }
 }
