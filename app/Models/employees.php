@@ -12,7 +12,7 @@ class employees extends Model
     use HasFactory;
     protected $table = 'employees';
 
-    protected $fillable = ['name','gender','email','hire_date'];
+    protected $fillable = ['age','name','gender','email','hire_date'];
 
     public $timestamp = false;
     public function empStatus(){
