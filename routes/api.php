@@ -8,6 +8,7 @@ use App\Http\Controllers\API\RegisterController as RegisterController;
 use App\Http\Controllers\API\JobsController;
 use App\Http\Controllers\API\EmployeeController;
 use App\Http\Controllers\API\EmployeeStatusController;
+use App\Http\Controllers\API\LogsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,8 +31,12 @@ Route::middleware('auth:sanctum')->group( function () {
     Route::resource('emp', EmployeeController::class);
     Route::resource('employee', EmployeeStatusController::class);
 
-    Route::get('employee/{id}/managers',[EmployeeStatusController::class, 'getManagers']);
-    Route::get('employee/{id}/managers-salary',[EmployeeStatusController::class, 'getManagersSalary']);
+    Route::get('employees/{id}/managers',[EmployeeStatusController::class, 'getManagers']);
+    Route::get('employees/{id}/managers-salary',[EmployeeStatusController::class, 'getManagersSalary']);
+    Route::get('employees/search',[EmployeeStatusController::class, 'searchQuery']);
+
+    Route::get('{date}/logs',[LogsController::class,'showLog']);
+
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

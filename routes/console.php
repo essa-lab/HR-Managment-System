@@ -17,3 +17,10 @@ use Illuminate\Support\Facades\Artisan;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
+
+
+Artisan::command('logs:clear', function() {
+    exec('del storage\logs\custom.log');
+    $this->comment('Logs have been cleared!');
+})->describe('Clear log files');
+
