@@ -46,4 +46,8 @@ class Service{
         }
         return $obj_merged;
     }
+    public function getEmployeesByQuery($query){
+        $emp = employees::where('name','like','%'.$query.'%')->paginate(10);
+        return $emp;
+    }
 }
