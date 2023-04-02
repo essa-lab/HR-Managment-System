@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\API;
 
 
+use App\Models\employees;
 use App\Service;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use App\Models\employessStatus as EmployeeStatus;
 use App\Http\Resources\EmployeeStatus as EmpStatusResource;
+use Illuminate\Support\Facades\Mail;
 use Validator;
 
 class EmployeeStatusController extends BaseController{
@@ -62,6 +64,20 @@ class EmployeeStatusController extends BaseController{
         $empStat->manager_id = $input['manager_id'];
         $empStat->save();
 
+        if(!is_null($empStat->salary)){
+            echo "hi";
+            $emp = employees::find($input['emp_id']);
+            $data = [
+                'name' => $emp->name,
+                'email'=> $emp->email,
+                'salary'=>$input['salary']
+            ];
+            Mail::send('view.view', $data, function ($message) use ($data) {
+                $message->from('no-reply@example.com', 'Salary Update');
+                $message->to($data['email']);
+                $message->subject('Salary Update: ' . $data['name'].' Your New Salary is '. $data['salary']);
+            });
+        }
         return $this->sendResponse(new EmpStatusResource($empStat), 'Employee Status Updated Successfully.');
     }
 

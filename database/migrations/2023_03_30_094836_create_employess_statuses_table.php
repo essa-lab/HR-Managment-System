@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('employess_statuses', function (Blueprint $table) {
             $table->id();
-            $table->double('salary');
+            $table->double('salary')->nullable();
             $table->foreignId('emp_id')->constrained('employees');
             $table->foreignId('job_id')->constrained('jobs');
             $table->foreignId('manager_id')->nullable()->constrained('employees');
