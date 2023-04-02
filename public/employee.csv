@@ -1,0 +1,5 @@
+name,age,gender,hire_date,salary,manager_id,job_name
+issa,25,male,"2022-02-02 00:00:00",400,3,"Software Engineer"
+layan,25,female,"2022-02-02 00:00:00",4002,1,"Software Engineer"
+Azam,25,male,"2022-02-02 00:00:00",40022,,"Software Engineer"
+Mustafa,30,male,"2022-02-02 00:00:00",40022,2,"Software Engineer"
