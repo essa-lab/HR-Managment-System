@@ -1,0 +1,17 @@
+{
+	"info": {
+		"_postman_id": "9b6d7995-21bb-4511-b013-75cdef28f51b",
+		"name": "Import&Export",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Export Employees",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
