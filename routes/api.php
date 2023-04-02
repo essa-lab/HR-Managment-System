@@ -37,6 +37,10 @@ Route::middleware('auth:sanctum')->group( function () {
 
     Route::get('{date}/logs',[LogsController::class,'showLog']);
 
+    Route::get('/employees/export',[EmployeeController::class,'exportEmployee']);
+
+    Route::post('/employees/import',[EmployeeController::class,'imoortEmployee']);
+
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
