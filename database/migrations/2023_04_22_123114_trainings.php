@@ -13,14 +13,20 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('employees', function (Blueprint $table) {
+        //
+        Schema::create('trainings', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('employee_id');
             $table->string('name');
-            $table->string('email')->unique();
-            $table->string('gender');
-            $table->timestamp('hire_date');
+            $table->text('description')->nullable();
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
+            $table->boolean('completed')->default(false);
             $table->timestamps();
+
+            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
         });
+
     }
 
     /**
@@ -30,6 +36,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('employees');
+        //
+        Schema::dropIfExists('trainings');
     }
 };
