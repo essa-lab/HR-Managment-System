@@ -20,9 +20,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('job_description');
             $table->string('job_requirment');
-            $table->unsignedBigInteger('department_id');
+            $table->unsignedBigInteger('department_id')->nullable();
 
-            $table->foreign('department_id')->on('id')->references('departments')->onDelete('cascade');
+            $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
             $table->timestamps();
         });
         Schema::enableForeignKeyConstraints();

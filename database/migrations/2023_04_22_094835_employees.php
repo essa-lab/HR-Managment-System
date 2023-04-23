@@ -23,11 +23,11 @@ return new class extends Migration
             $table->string('email');
             $table->string('phone_number');
             $table->date('hire_date');
-            $table->date('termination_date');
+            $table->date('termination_date')->nullable();
             $table->enum('gender',['Male','Female']);
             $table->enum('mariral_status',['Single','Married']);
-            $table->unsignedBigInteger('position_id');
-            $table->unsignedBigInteger('department_id');
+            $table->unsignedBigInteger('position_id')->nullable();
+            $table->unsignedBigInteger('department_id')->nullable();
 
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
             $table->foreign('position_id')->references('id')->on('positions');
