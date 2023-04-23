@@ -9,8 +9,8 @@ class Position extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'title',
-        'description',
+        'name',
+        'job_description',
         'department_id',
     ];
 
