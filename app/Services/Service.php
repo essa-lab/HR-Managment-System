@@ -25,7 +25,7 @@ abstract class Service{
     }
 
     public function delete($id){
-        $this->repository->delete($id);
+       return $this->repository->delete($id);
     }
 }
 
