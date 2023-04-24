@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
         });
 
 
-                // Get all the departments and positions
+        // Get all the departments and positions
         $departments = Department::all();
         $positions = Position::all();
 
