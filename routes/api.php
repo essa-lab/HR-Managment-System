@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Services\SearchService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,7 @@ use App\Http\Controllers\API\LogsController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::get('search',[EmployeeController::class,'search']);
 Route::controller(RegisterController::class)->group(function(){
 
     Route::post('register', 'register');

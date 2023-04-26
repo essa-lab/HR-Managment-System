@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Imports\ImportEmployee;
+use App\Services\SearchService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use App\Models\Employees;
@@ -12,6 +13,10 @@ use Illuminate\Support\Facades\Response;
 use Maatwebsite\Excel\Facades\Excel;
 use Validator;
 class EmployeeController extends BaseController{
+    protected SearchService $searche;
+    public function __construct(SearchService $searchService){
+        $this->searche=$searchService;
+    }
     public function index(){
         $employee = Employees::all();
         return $this->sendResponse(EmployeeResource::collection($employee),'Employee retrive Successfully.');
@@ -97,5 +102,10 @@ class EmployeeController extends BaseController{
     }
     public function importEmployee(Request $request){
         return Excel::import(new ImportEmployee, $request->file('file')->store('files'));
+    }
+    public function search(Request $request){
+        $term = $request->input('q');
+        $employees = $this->searche->searchEmployee($term);
+        return $employees;
     }
 }
