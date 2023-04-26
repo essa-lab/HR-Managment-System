@@ -1,5 +1,7 @@
 <?php
 namespace Tests\Unit\Services;
+use App\Models\Department;
+use App\Models\Position;
 use Tests\TestCase;
 use App\Services\EmployeeService;
 use App\Repositories\EmployeeRepository;
@@ -23,6 +25,9 @@ class EmployeeServiceTest extends TestCase {
                     'id' => 1,
                     'first_name' => 'John',
                     'last_name' => 'Doe',
+                    'email'=>'ww@ww.com',
+                    'phone_number'=>'132',
+                    'hire_date'=>new \DateTime()
                     // Add more attributes here as needed
                 ])
             );
@@ -34,6 +39,7 @@ class EmployeeServiceTest extends TestCase {
            $mock->shouldReceive('delete')
             ->with(1)
              ->andReturn(true);
+
         });
         $this->service = new EmployeeService($this->repositoryMock);
     }
@@ -63,6 +69,34 @@ class EmployeeServiceTest extends TestCase {
     public function testDeleteEmployeeWithValidId(){
          $this->assertTrue($this->service->delete(1));
     }
+
+    public function testAssignEmployeeToDepartment(){
+       // Create a fake department
+    $department = Department::factory()->make();
+
+    // Create a fake employee
+    $employee = Employee::factory()->make();
+
+    // Call the assignToDepartment method
+    $this->service->assignEmployeeToDepartment($employee, $department->id);
+
+    // Reload the employee from the database to get the updated department
+    $employee->refresh();
+
+    // Assert that the employee is now assigned to the correct department
+    $this->assertEquals($department->id, $employee->department_id);
+    }
+    public function testAssignPositionToEmployee(){
+     $position = Position::factory()->make();
+
+     $employee = Employee::factory()->make();
+
+     $this->service->assignPositionToEmployee($employee, $position->id);
+
+     $employee->refresh();
+
+     $this->assertEquals($position->id, $employee->position_id);
+     }
 
 
 }

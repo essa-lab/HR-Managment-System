@@ -10,7 +10,7 @@ class Salary extends Model
     use HasFactory;
     protected $fillable = [
         'employee_id',
-        'amount',
+        'base_salary',
         'commission',
         'effective_date',
     ];
