@@ -1,12 +1,9 @@
 <?php
 
-namespace App;
+namespace App\Logging;
 
 use Illuminate\Support\Facades\DB;
-use Monolog\Handler\AbstractHandler;
 use Monolog\Handler\AbstractProcessingHandler;
-use Throwable;
-use App\Models\LogMessage;
 
 class DataBaseHandler extends AbstractProcessingHandler
 {
