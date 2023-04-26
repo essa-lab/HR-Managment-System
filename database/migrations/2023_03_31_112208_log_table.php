@@ -17,11 +17,9 @@ return new class extends Migration
         Schema::create('log_messages', function (Blueprint $table) {
             $table->id();
             $table->string('level_name');
-            $table->unsignedSmallInteger('level');
             $table->string('message');
-            $table->dateTime('logged_at');
-            $table->json('context');
-            $table->json('extra');
+            $table->json('context')->nullable();
+            $table->timestamps();
         });
     }
 

@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\DB;
+use Monolog\Handler\AbstractHandler;
 use Monolog\Handler\AbstractProcessingHandler;
 use Throwable;
 use App\Models\LogMessage;
@@ -11,23 +13,13 @@ class DataBaseHandler extends AbstractProcessingHandler
     /**
      * @inheritDoc
      */
-    protected function write($record): void
-    {
-        $record = is_array($record) ? $record : $record->toArray();
-
-        $exception = $record['context']['exception'] ?? null;
-
-        if ($exception instanceof Throwable) {
-            $record['context']['exception'] = (string) $exception;
-        }
-
-        LogMessage::create([
-            'level' => $record['level'],
-            'level_name' => $record['level_name'],
-            'message' => $record['message'],
-            'logged_at' => $record['datetime'],
-            'context' => $record['context'],
-            'extra' => $record['extra'],
+    protected function write(array $record):void{
+        DB::table('log_messages')->insert([
+            'level_name'=>$record['level_name'],
+            'message'=>$record['message'],
+            'context'=>json_encode($record['context']),
+            // 'created_at'=>$record['created_at']->format('Y-m-d H:i:s')
         ]);
     }
+
 }
