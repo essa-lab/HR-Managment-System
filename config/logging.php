@@ -52,7 +52,6 @@ return [
     'channels' => [
         'db' => [
             'driver' => 'custom',
-
             'via'  => LogDB::class,
         ],
         'stack' => [
@@ -122,7 +121,8 @@ return [
             'path' => storage_path('logs/laravel.log'),
         ],
         'custom'=>[
-            'driver'=>'single',
+            'driver'=>'custom',
+
             'path'=> storage_path('logs/custom.log'),
         ]
 

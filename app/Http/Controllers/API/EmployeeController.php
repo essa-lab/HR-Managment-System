@@ -9,6 +9,7 @@ use App\Http\Controllers\API\BaseController as BaseController;
 use App\Models\Employees;
 use App\Http\Resources\employee as EmployeeResource;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Response;
 use Maatwebsite\Excel\Facades\Excel;
 use Validator;
@@ -106,6 +107,8 @@ class EmployeeController extends BaseController{
     public function search(Request $request){
         $term = $request->input('q');
         $employees = $this->searche->searchEmployee($term);
+        Log::channel('db')->info('Search Resaults :Employee name = '.$term,['User'=>'ME']);
+        Log::info("logs");
         return $employees;
     }
 }
